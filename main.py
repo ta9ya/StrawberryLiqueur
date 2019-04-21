@@ -16,7 +16,7 @@ json_str = '''
 def main():
 
     # アルバムDBのJSONを読み込み
-    f = open ("sample.json", 'r', encoding="utf-8")
+    f = open ("Album.json", 'r', encoding="utf-8")
     album_db = json.load(f)
 
     #print(album_db[1][0]["artist"]["character"])
