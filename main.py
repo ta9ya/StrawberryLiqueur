@@ -15,7 +15,7 @@ json_str = '''
 def main():
 
     # アルバムDBのJSONを読み込み
-    f = open ("sample.json", 'r',encoding="utf-8")
+    f = open ("sample.json", 'r', encoding="utf-8")
     album_db = json.load(f)
 
     #print(album_db[1][0]["artist"]["character"])
@@ -33,7 +33,7 @@ def main():
     artist = json_dict["artist"]
     title = json_dict["title"]
 
-    #answer = a.search_data(json_str)
+    answer = a.search_data(json_dict)
     
     # answerは sample.json の1要素が返るイメージ
     #url = answer[0]["url"]
