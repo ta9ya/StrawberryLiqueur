@@ -9,7 +9,8 @@ from PIL import Image
 
 json_str = '''
 {"artist":"高垣楓",
-"title":"こいかぜ"}
+"title":"こいかぜ",
+"character_voice":"早見沙織"}
 '''
 
 def main():
@@ -35,9 +36,10 @@ def main():
 
     answer = a.search_data(json_dict)
     
+    print(answer)
     # answerは sample.json の1要素が返るイメージ
-    #url = answer[0]["url"]
-    url = album_db[1][0]["url"]
+    url = answer["url"]
+    #url = album_db[1][0]["url"]
     f = io.BytesIO(urllib.request.urlopen(url).read())
     img = Image.open(f)
     img.show()
