@@ -16,7 +16,7 @@ class MusicSearch(Levenshtein):
 		}
 
 	def _calc_similarity(self, query_word, data_list):
-
+		min_data = 1
 		dist_list = list()
 
 		for d in data_list:
@@ -27,12 +27,16 @@ class MusicSearch(Levenshtein):
 
 			dist_list.append(dist / long_word_length)
 
-		min_data = min(dist_list)
+		if len(dist_list) > 0:
+			min_data = min(dist_list)
 
 		return min_data
 
 	def _calc_perplexity(self, perplexities):
-		total_perplexity = sum(perplexities) / len(perplexities)
+		if len(perplexities) == 0:
+			total_perplexity = 0.5
+		else:
+			total_perplexity = sum(perplexities) / len(perplexities)
 		return total_perplexity
 
 	def search_data(self, query_dict):
@@ -65,23 +69,26 @@ class MusicSearch(Levenshtein):
 
 			for key, value in self.keys.items():
 				if key == 'title':
-					data_list = data[value]
+					try:
+						data_list = data[value]
+					except:
+						data_list = []
 				else:
 					data_list = data['artist'][value]
 
 				perplexity = self._calc_similarity(query_dict[key], data_list)
 
-				if perplexity < 1:
-					perplexities.append(perplexity)
-				else:
-					flag = False
-					break
+				# if perplexity < 1:
+				perplexities.append(perplexity)
+				# else:
+				# 	flag = False
+				# 	break
 
 			if flag:
 				total_perplexity = self._calc_perplexity(perplexities)
 				music_list.append([data, total_perplexity])
 
-		if len(music_data) > 0:
+		if len(music_list) > 0:
 			music_data = min(music_list, key=lambda x: x[1])[0]
 
 		return music_data
