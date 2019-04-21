@@ -7,14 +7,30 @@ json_str = '''
 {"artist":"高垣楓",
 "title":"こいかぜ"}
 '''
-#json_str = input()
 
-json_dict = json.loads(json_str)
-print(json_dict["artist"])
+def main():
+    # json_str = input()
 
-artist = json_dict["artist"]
-title = json_dict["title"]
+    # アルバムDBのJSONを読み込み
+    f = open ("sample.json", 'r',encoding="utf-8")
+    album_db = json.load(f)
 
-url = hogehoge(artist, title)
+    print(album_db[1][0]["artist"]["character"])
+    print(album_db[1][0]["artist"]["voice"])
+    print(album_db[1][0]["in_music_title"])
 
-print(url)
+    # アルバムDBのJSONを使ってmatchクラスのインスタンスを生成
+    # a = Match(album_db)
+
+    # 問い合わせ
+    json_dict = json.loads(json_str)
+
+    artist = json_dict["artist"]
+    title = json_dict["title"]
+
+    #url = a.match(artist, title)
+
+    #print(url)
+
+if __name__ == "__main__":
+    main()
