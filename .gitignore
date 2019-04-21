@@ -2,4 +2,4 @@ venv/
 .pyyhon_version
 .idea
 .vscode/settings.json
-__pycache__/match.cpython-37.pyc
+__pycache__/
