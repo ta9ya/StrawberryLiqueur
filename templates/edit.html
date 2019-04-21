@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>新規検索</h1>
+<form action="{{ url_for('search') }}" method="post">
+ 
+    <label>曲名</label>
+    <input class="form-control" type="text" size="30" name="title">
+    <label>アーティスト</label>
+    <input class="form-control" type="text" size="50" name="title">
+    <input class="btn btn-primary" type="submit" value="送信">
+ 
+</form>
+{% endblock %}
