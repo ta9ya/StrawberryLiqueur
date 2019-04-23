@@ -2,9 +2,11 @@ import json
 import io
 import urllib.request
 import os
+import os.path
 
 from flask import Flask, redirect, url_for, render_template, request
 from mutagen.mp4 import MP4
+from mutagen.mp3 import EasyMP3
 from PIL import Image
 
 from match import MusicSearch
@@ -77,12 +79,26 @@ def selectfile():
 def filesearch():
     if request.method == 'POST':
         path = request.form['filename']
-        tags = MP4(path).tags
-        title = tags["\xa9nam"][0]
-        artist = tags["\xa9ART"][0]
+        
+        # 拡張子判定
+        root, ext = os.path.splitext(path)
+        print(ext)
+        if ext == '.m4a':
+            tags = MP4(path).tags
+            title = tags["\xa9nam"][0]
+            artist = tags["\xa9ART"][0]
+        elif ext == '.mp3':
+            tags = EasyMP3(path)
+            title = tags['title'][0]
+            artist = tags['artist'][0]
+        else:
+            title = ""
+            artist = ""
+        
         json_dict = {}
         json_dict["title"] = title
         json_dict["artist"] = artist
+
         url = get_url(json_dict)
         print(title)
         return render_template('view.html', title=title, artist=artist, url=url)
