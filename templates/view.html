@@ -2,15 +2,14 @@
 {% block body %}
 <h1>結果参照</h1>
  
-<h3>0:サンプルタイトル</h3>
-<p>2020/01/01 12:00</p>
-<div class="row">
-    {{title}}
-</div>
- 
-<div class="row">
-    <img src={{url}}></img>
-</div>
- 
+<table>
+<tr>
+    <td>{{a}} | {{b}} | (CV: {{c}} )</td>
+</tr>
+<tr>
+    <td><img src="{{url}}"></td>
+</tr>
+</table>
+
 <br><br>
 {% endblock %}

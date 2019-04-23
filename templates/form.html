@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>新規検索</h1>
+<form action="{{ url_for('result') }}" method="post">
+ 
+    <label>曲名</label>
+    <input class="form-control" type="text" size="50" name="title">
+    <label>アーティスト</label>
+    <input class="form-control" type="text" size="50" name="artist">
+    <label>声優</label>
+    <input class="form-control" type="text" size="50" name="character_voice">
+    <br>
+    <input class="btn btn-primary" type="submit" value="送信">
+ 
+</form>
+{% endblock %}
