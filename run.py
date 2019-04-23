@@ -87,10 +87,12 @@ def filesearch():
             tags = MP4(path).tags
             title = tags["\xa9nam"][0]
             artist = tags["\xa9ART"][0]
+            album = tags["\xa9alb"][0]
         elif ext == '.mp3':
             tags = EasyMP3(path)
             title = tags['title'][0]
             artist = tags['artist'][0]
+            album = tags['album'][0]
         else:
             title = ""
             artist = ""
@@ -101,7 +103,7 @@ def filesearch():
 
         url = get_url(json_dict)
         print(title)
-        return render_template('view.html', title=title, artist=artist, url=url)
+        return render_template('view.html', title=title, artist=artist, album=album, url=url)
 
 @app.route('/')
 def search():
