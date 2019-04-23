@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>ファイル選択</h1>
+<form action="{{ url_for('filesearch') }}" method="post">
+ 
+    <label>パス</label>
+    <input class="form-control" type="text" size="50" name="filename">
+    <br>
+    <input class="btn btn-primary" type="submit" value="送信">
+    <br>
+    <br>
+    <input class="btn btn-primary" type="button" onclick="location.href='/'" value="曲名・アーティスト名入力">
+
+</form>
+{% endblock %}

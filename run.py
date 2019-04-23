@@ -1,9 +1,10 @@
 import json
 import io
 import urllib.request
-
 import os
+
 from flask import Flask, redirect, url_for, render_template, request
+from mutagen.mp4 import MP4
 from PIL import Image
 
 from match import MusicSearch
@@ -67,7 +68,25 @@ def index():
     """ 一覧画面 """
     return render_template('index.html', results={})
  '''
- 
+@app.route('/selectfile')
+def selectfile():
+    """ ファイル選択画面 """
+    return render_template('selectfile.html')
+
+@app.route('/filesearch', methods=['POST'])
+def filesearch():
+    if request.method == 'POST':
+        path = request.form['filename']
+        tags = MP4(path).tags
+        title = tags["\xa9nam"][0]
+        artist = tags["\xa9ART"][0]
+        json_dict = {}
+        json_dict["title"] = title
+        json_dict["artist"] = artist
+        url = get_url(json_dict)
+        print(title)
+        return render_template('view.html', title=title, artist=artist, url=url)
+
 @app.route('/')
 def search():
     """ 新規検索画面 """
@@ -81,9 +100,9 @@ def result():
     if request.method == 'POST':
         a = request.form['title']
         b = request.form['artist']
-        c = request.form['character_voice']
+        #c = request.form['character_voice']
         url=get_url(request.form)
-        return render_template('view.html', a=a, b=b, c=c, url=url)
+        return render_template('view.html', title=a, artist=b, url=url)
  
 if __name__ == '__main__':
     app.run(debug=True)
