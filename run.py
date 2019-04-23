@@ -114,11 +114,11 @@ def search():
 def result():
     """ 分析実行処理 """
     if request.method == 'POST':
-        a = request.form['title']
-        b = request.form['artist']
+        title = request.form['title']
+        artist = request.form['artist']
         #c = request.form['character_voice']
         url=get_url(request.form)
-        return render_template('view.html', title=a, artist=b, url=url)
+        return render_template('view.html', title=title, artist=artist, url=url)
  
 if __name__ == '__main__':
     app.run(debug=True)
