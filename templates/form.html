@@ -1,8 +1,37 @@
 {% extends "base.html" %}
+{% block navbar %}
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <a class="navbar-brand" href="/"><strong>IDOLM@STER Jacket Search</strong></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link active" href="/">曲名・アーティスト名入力</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/selectfile">ファイル入力</a>
+                </li>
+                <!-- ドロップダウンメニューが欲しくなった時用
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#"></a>
+                        <a class="dropdown-item" href="#"></a>
+                    </div>
+                </li>
+                -->
+        </ul>
+    </div>
+</nav>
+{% endblock %}
+
 {% block body %}
-<h1>新規検索</h1>
+
 <form action="{{ url_for('result') }}" method="post">
- 
+    <br>
     <label>曲名</label>
     <input class="form-control" type="text" size="50" name="title">
     <label>アーティスト</label>
@@ -13,9 +42,5 @@
     -->
     <br>
     <input class="btn btn-primary" type="submit" value="送信">
-    <br>
-    <br>
-    <input class="btn btn-primary" type="button" onclick="location.href='/selectfile'" value="ファイル選択">
- 
 </form>
 {% endblock %}
