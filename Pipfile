@@ -10,9 +10,11 @@ pillow = "*"
 urllib3 = "*"
 mutagen = "*"
 flask = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.6"
 
 [scripts]
 start = 'python run.py'
+server = 'gunicorn run:app'

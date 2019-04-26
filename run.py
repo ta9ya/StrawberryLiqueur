@@ -102,7 +102,7 @@ def filesearch():
         json_dict["artist"] = artist
 
         url = get_url(json_dict)
-        print(title)
+        #print(title)
         return render_template('view.html', title=title, artist=artist, album=album, url=url)
 
 @app.route('/')
