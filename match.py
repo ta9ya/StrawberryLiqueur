@@ -11,8 +11,8 @@ class MusicSearch(Levenshtein):
 		self.music_data = _music_data
 		self.keys = {
 			'artist': 'character',
-			'title': 'in_music_title'#,
-			#'character_voice': 'voice'
+			'title': 'in_music_title'  # ,
+			# 'character_voice': 'voice'
 		}
 
 	def _calc_similarity(self, query_word, data_list):
@@ -80,9 +80,9 @@ class MusicSearch(Levenshtein):
 
 				# if perplexity < 1:
 				perplexities.append(perplexity)
-				# else:
-				# 	flag = False
-				# 	break
+			# else:
+			# 	flag = False
+			# 	break
 
 			if flag:
 				total_perplexity = self._calc_perplexity(perplexities)
