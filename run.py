@@ -116,10 +116,16 @@ def search():
 def result():
     """ 分析実行処理 """
     if request.method == 'POST':
-        title = request.form['title']
-        artist = request.form['artist']
+        try:
+            title = request.form['title']
+        except:
+            title = ''
+        try:
+            artist = request.form['artist']
+        except:
+            artist = ''
         #c = request.form['character_voice']
-        url=get_url(request.form)
+        url = get_url(request.form)
         return render_template('view.html', title=title, artist=artist, url=url)
  
 if __name__ == '__main__':
