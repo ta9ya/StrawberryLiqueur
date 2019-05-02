@@ -19,16 +19,17 @@ class MusicSearch(Levenshtein):
 		min_data = 1
 		dist_list = list()
 
-		for d in data_list:
-			long_word_length = len(query_word) if len(query_word) > len(d) else len(d)
+		if len(query_word) > 0:
+			for d in data_list:
+				long_word_length = len(query_word) if len(query_word) > len(d) else len(d)
 
-			distance = self.initArray(query_word, d)
-			dist = self.editDist(query_word, d, distance)
+				distance = self.initArray(query_word, d)
+				dist = self.editDist(query_word, d, distance)
 
-			dist_list.append(dist / long_word_length)
+				dist_list.append(dist / long_word_length)
 
-		if len(dist_list) > 0:
-			min_data = min(dist_list)
+			if len(dist_list) > 0:
+				min_data = min(dist_list)
 
 		return min_data
 
@@ -88,7 +89,9 @@ class MusicSearch(Levenshtein):
 				total_perplexity = self._calc_perplexity(perplexities)
 				music_list.append([data, total_perplexity])
 
+		# print(music_list)
 		if len(music_list) > 0:
 			music_data = min(music_list, key=lambda x: x[1])[0]
 
+		print(min(music_list, key=lambda x: x[1])[1])
 		return music_data
