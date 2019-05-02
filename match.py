@@ -93,5 +93,5 @@ class MusicSearch(Levenshtein):
 		if len(music_list) > 0:
 			music_data = min(music_list, key=lambda x: x[1])[0]
 
-		print(min(music_list, key=lambda x: x[1])[1])
+		# print(min(music_list, key=lambda x: x[1])[1])
 		return music_data
